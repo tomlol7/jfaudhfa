@@ -2,12 +2,12 @@ const panel = document.getElementById("infoPanel");
 
 const phenotypeData = {
     region1: {
-        regionName: "Region One",
+        regionName: "Florida",
         males: [{ img: "https://via.placeholder.com/200x250", name: "John" }],
         females: [{ img: "https://via.placeholder.com/200x250", name: "Maria" }]
     },
     region2: {
-        regionName: "Region Two",
+        regionName: "California",
         males: [{ img: "https://via.placeholder.com/200x250", name: "Peter" }],
         females: [{ img: "https://via.placeholder.com/200x250", name: "Sophia" }]
     }
