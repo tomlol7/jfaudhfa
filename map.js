@@ -1,6 +1,5 @@
 const panel = document.getElementById("infoPanel");
 
-// Example phenotype data
 const phenotypeData = {
     region1: {
         regionName: "Region One",
@@ -24,7 +23,7 @@ document.querySelectorAll("path").forEach(region => {
         this.classList.add("selected");
 
         const data = phenotypeData[this.id];
-        if(!data) return;
+        if (!data) return;
 
         const maleHTML = data.males.map(createImageBox).join('');
         const femaleHTML = data.females.map(createImageBox).join('');
@@ -43,6 +42,6 @@ document.querySelectorAll("path").forEach(region => {
         panel.classList.add("active");
     });
 
-    region.addEventListener("mouseenter", () => { if(!region.classList.contains("selected")) region.setAttribute("fill", "#990000"); });
-    region.addEventListener("mouseleave", () => { if(!region.classList.contains("selected")) region.setAttribute("fill", "#111"); });
+    region.addEventListener("mouseenter", () => { if (!region.classList.contains("selected")) region.setAttribute("fill", "#990000"); });
+    region.addEventListener("mouseleave", () => { if (!region.classList.contains("selected")) region.setAttribute("fill", "#111"); });
 });
