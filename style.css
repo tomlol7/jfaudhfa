@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, rgba(150,0,0,0.35) 0%, transparent 70%);
+    top: -300px;
+    left: -200px;
+    z-index: -1;
+}
+
+header {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #cc0000;
+}
+
+.map-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+svg {
+    width: 80%;
+    max-width: 1000px;
+}
+
+path {
+    fill: #111;
+    stroke: #550000;
+    stroke-width: 1;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+path:hover {
+    fill: #660000;
+    stroke: #ff0000;
+}
+
+path.selected {
+    stroke: #ff0000;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 10px #ff0000);
+}
+
+.info-panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 400px;
+    background: rgba(20, 0, 0, 0.95);
+    border-left: 1px solid #660000;
+    padding: 40px 25px;
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.info-panel.active {
+    transform: translateX(0);
+}
+
+.info-panel h2 {
+    color: #ff2a2a;
+    margin-bottom: 20px;
+}
+
+#closePanel {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #330000;
+    color: #ff4444;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.image-box {
+    flex: 1 1 45%;
+    text-align: center;
+}
+
+.image-box img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border: 1px solid #550000;
+}
+
+.image-box p {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
