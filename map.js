@@ -1,20 +1,51 @@
 const panel = document.getElementById("infoPanel");
 
+// Phenotype data mapped by region
 const phenotypeData = {
-    region1: {
+    Florida_US: {
         regionName: "Florida",
-        males: [{ img: "https://via.placeholder.com/200x250", name: "John" }],
-        females: [{ img: "https://via.placeholder.com/200x250", name: "Maria" }]
+        phenotypes: [
+            { 
+                name: "Phenotype A", 
+                maleImg: "https://via.placeholder.com/200x250", 
+                femaleImg: "https://via.placeholder.com/200x250" 
+            },
+            { 
+                name: "Phenotype B", 
+                maleImg: "https://via.placeholder.com/200x250", 
+                femaleImg: "https://via.placeholder.com/200x250" 
+            }
+        ]
     },
-    region2: {
+    California_US: {
         regionName: "California",
-        males: [{ img: "https://via.placeholder.com/200x250", name: "Peter" }],
-        females: [{ img: "https://via.placeholder.com/200x250", name: "Sophia" }]
-    }
+        phenotypes: [
+            { 
+                name: "Phenotype X", 
+                maleImg: "https://via.placeholder.com/200x250", 
+                femaleImg: "https://via.placeholder.com/200x250" 
+            },
+            { 
+                name: "Phenotype Y", 
+                maleImg: "https://via.placeholder.com/200x250", 
+                femaleImg: "https://via.placeholder.com/200x250" 
+            }
+        ]
+    },
+    // more regions...
 };
 
-function createImageBox(person) {
-    return `<div class="image-box"><img src="${person.img}"><p>${person.name}</p></div>`;
+// Create a box showing both male and female images for a phenotype
+function createPhenotypeBox(phenotype) {
+    return `
+        <div class="phenotype-box">
+            <div class="image-pair">
+                <img src="${phenotype.maleImg}" alt="Male ${phenotype.name}">
+                <img src="${phenotype.femaleImg}" alt="Female ${phenotype.name}">
+            </div>
+            <p>${phenotype.name}</p>
+        </div>
+    `;
 }
 
 document.querySelectorAll("path").forEach(region => {
@@ -25,23 +56,27 @@ document.querySelectorAll("path").forEach(region => {
         const data = phenotypeData[this.id];
         if (!data) return;
 
-        const maleHTML = data.males.map(createImageBox).join('');
-        const femaleHTML = data.females.map(createImageBox).join('');
+        const phenotypeHTML = data.phenotypes.map(createPhenotypeBox).join('');
 
         panel.innerHTML = `
             <button id="closePanel">×</button>
             <h2>${data.regionName}</h2>
-            <div class="image-container">${maleHTML}${femaleHTML}</div>
+            <div class="phenotype-container">${phenotypeHTML}</div>
         `;
+
+        panel.classList.add("active");
 
         document.getElementById("closePanel").addEventListener("click", () => {
             panel.classList.remove("active");
             document.querySelectorAll("path").forEach(p => p.classList.remove("selected"));
         });
-
-        panel.classList.add("active");
     });
 
-    region.addEventListener("mouseenter", () => { if (!region.classList.contains("selected")) region.setAttribute("fill", "#990000"); });
-    region.addEventListener("mouseleave", () => { if (!region.classList.contains("selected")) region.setAttribute("fill", "#111"); });
+    // Hover effect
+    region.addEventListener("mouseenter", () => {
+        if (!region.classList.contains("selected")) region.setAttribute("fill", "#990000");
+    });
+    region.addEventListener("mouseleave", () => {
+        if (!region.classList.contains("selected")) region.setAttribute("fill", "#111");
+    });
 });
