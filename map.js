@@ -1,41 +1,28 @@
 const panel = document.getElementById("infoPanel");
 
-// Phenotype data mapped by region
-const phenotypeData = {
-    Florida_US: {
-        regionName: "Florida",
-        phenotypes: [
-            { 
-                name: "Phenotype A", 
-                maleImg: "https://via.placeholder.com/200x250", 
-                femaleImg: "https://via.placeholder.com/200x250" 
-            },
-            { 
-                name: "Phenotype B", 
-                maleImg: "https://via.placeholder.com/200x250", 
-                femaleImg: "https://via.placeholder.com/200x250" 
-            }
-        ]
+// All phenotypes and the regions they appear in
+const phenotypes = [
+    {
+        name: "Phenotype X",
+        maleImg: "https://via.placeholder.com/200x250",
+        femaleImg: "https://via.placeholder.com/200x250",
+        regions: ["Florida_US", "Maine_US", "PinarDelRio_CU"]
     },
-    California_US: {
-        regionName: "California",
-        phenotypes: [
-            { 
-                name: "Phenotype X", 
-                maleImg: "https://via.placeholder.com/200x250", 
-                femaleImg: "https://via.placeholder.com/200x250" 
-            },
-            { 
-                name: "Phenotype Y", 
-                maleImg: "https://via.placeholder.com/200x250", 
-                femaleImg: "https://via.placeholder.com/200x250" 
-            }
-        ]
+    {
+        name: "Phenotype Y",
+        maleImg: "https://via.placeholder.com/200x250",
+        femaleImg: "https://via.placeholder.com/200x250",
+        regions: ["California_US", "Florida_US"]
     },
-    // more regions...
-};
+    {
+        name: "Phenotype Z",
+        maleImg: "https://via.placeholder.com/200x250",
+        femaleImg: "https://via.placeholder.com/200x250",
+        regions: ["Maine_US"]
+    }
+];
 
-// Create a box showing both male and female images for a phenotype
+// Create a box for a phenotype (male + female images)
 function createPhenotypeBox(phenotype) {
     return `
         <div class="phenotype-box">
@@ -53,14 +40,18 @@ document.querySelectorAll("path").forEach(region => {
         document.querySelectorAll("path").forEach(p => p.classList.remove("selected"));
         this.classList.add("selected");
 
-        const data = phenotypeData[this.id];
-        if (!data) return;
+        const regionId = this.id;
 
-        const phenotypeHTML = data.phenotypes.map(createPhenotypeBox).join('');
+        // Filter phenotypes that include this region
+        const foundPhenotypes = phenotypes.filter(p => p.regions.includes(regionId));
+
+        if (!foundPhenotypes.length) return;
+
+        const phenotypeHTML = foundPhenotypes.map(createPhenotypeBox).join('');
 
         panel.innerHTML = `
             <button id="closePanel">×</button>
-            <h2>${data.regionName}</h2>
+            <h2>${regionId}</h2>
             <div class="phenotype-container">${phenotypeHTML}</div>
         `;
 
