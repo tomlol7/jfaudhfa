@@ -2,11 +2,23 @@ const panel = document.getElementById("infoPanel");
 
 // All phenotypes and the regions they appear in
 const phenotypes = [
-    {
-        name: "Phenotype X",
+{
+        name: "Garifuna / Black Carib",
         maleImg: "https://via.placeholder.com/200x250",
         femaleImg: "https://via.placeholder.com/200x250",
-        regions: ["Florida_US", "Maine_US", "PinarDelRio_CU"]
+        regions: [
+            // Central America (Core Ancestral Lands)
+            "Belize_BZ", "Stann_Creek_BZ", "Toledo_BZ", "Cayo_BZ",
+            "Cortés_HN", "Atlántida_HN", "Colón_HN", "Gracias_a_Dios_HN", "Islas_de_la_Bahía_HN",
+            "Izabal_GT",
+            "Atlántico_Norte_NI", "Atlántico_Sur_NI",
+
+            // Caribbean Origins (St. Vincent)
+            "Saint_Vincent_and_the_Grenadines_VC",
+
+            // Major Diaspora Hubs (USA)
+            "New_York_US", "Louisiana_US", "Florida_US", "California_US", "Texas_US", "Illinois_US"
+        ]
     },
     {
         name: "Phenotype Y",
