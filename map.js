@@ -4,8 +4,8 @@ const panel = document.getElementById("infoPanel");
 const phenotypes = [
 {
         name: "Garifuna / Black Carib",
-        maleImg: "https://via.placeholder.com/200x250",
-        femaleImg: "https://via.placeholder.com/200x250",
+        maleImg: "Faces/garifunam.jpg,
+        femaleImg: "Faces/garifunaf.jpg",
         regions: [
             // Central America (Core Ancestral Lands)
             "Belize_BZ", "Stann_Creek_BZ", "Toledo_BZ", "Cayo_BZ",
